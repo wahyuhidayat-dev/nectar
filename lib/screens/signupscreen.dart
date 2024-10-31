@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:nectar/screens/homescreen.dart';
 import 'package:nectar/screens/loginscreen.dart';
+import 'package:nectar/utils/bottomnavbar.dart';
 import 'package:nectar/utils/const.dart';
 
 class SignUpScreen extends StatefulWidget {
@@ -133,7 +133,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => const HomeScreen(),
+                        builder: (context) => const BottomNavBar(),
                       ));
                 },
                 child: Container(

@@ -1,6 +1,5 @@
 import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter/material.dart';
-import 'package:nectar/screens/homescreen.dart';
 import 'package:nectar/screens/signupscreen.dart';
 import 'package:nectar/utils/bottomnavbar.dart';
 import 'package:nectar/utils/const.dart';
@@ -54,7 +53,7 @@ class _LoginScreensState extends State<LoginScreens> {
     Size screenSize = MediaQuery.of(context).size;
     return SafeArea(
         child: Scaffold(
-      backgroundColor: whiteColor,
+      backgroundColor: backgroundColor,
       body: SingleChildScrollView(
           child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -153,7 +152,7 @@ class _LoginScreensState extends State<LoginScreens> {
                     Navigator.pushReplacement(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => BottomNavBar(),
+                          builder: (context) => const BottomNavBar(),
                         ));
                   },
                   child: Container(
