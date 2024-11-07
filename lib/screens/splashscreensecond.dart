@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:nectar/screens/loginscreen.dart';
 import 'package:nectar/utils/const.dart';
+import 'package:nectar/utils/routing.dart';
 
 class SplashScreenSecond extends StatelessWidget {
   const SplashScreenSecond({super.key});

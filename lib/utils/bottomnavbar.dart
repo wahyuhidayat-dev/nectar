@@ -8,15 +8,14 @@ import 'package:nectar/screens/homescreen.dart';
 import 'package:nectar/screens/userscreen.dart';
 import 'package:nectar/utils/const.dart';
 
-class BottomNavBar extends StatefulWidget {
-  const BottomNavBar({super.key});
+class Bottomnavbar extends StatefulWidget {
+  const Bottomnavbar({super.key});
 
   @override
-  // ignore: library_private_types_in_public_api
-  _BottomNavBarState createState() => _BottomNavBarState();
+  State<Bottomnavbar> createState() => _BottomnavbarState();
 }
 
-class _BottomNavBarState extends State<BottomNavBar> {
+class _BottomnavbarState extends State<Bottomnavbar> {
   final PageController pageController = PageController(initialPage: 0);
   List<Widget> screensPage = [
     const HomeScreen(),
@@ -64,7 +63,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
                 color: whiteColor,
               ),
             ],
-            color: greenColor ,
+            color: greenColor,
             buttonBackgroundColor: greenColor, // circle color
             backgroundColor: backgroundColor, // background circle color
             animationCurve: Curves.easeInOut,

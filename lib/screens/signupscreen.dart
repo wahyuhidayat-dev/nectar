@@ -20,6 +20,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
+      appBar: AppBar(
+        title: const Text("Sign Up"),
+      ),
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -133,7 +136,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => const BottomNavBar(),
+                        builder: (context) => const Bottomnavbar(),
                       ));
                 },
                 child: Container(

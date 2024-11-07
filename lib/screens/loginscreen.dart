@@ -1,8 +1,12 @@
 import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:nectar/screens/detailscreen.dart';
 import 'package:nectar/screens/signupscreen.dart';
 import 'package:nectar/utils/bottomnavbar.dart';
 import 'package:nectar/utils/const.dart';
+import 'package:nectar/utils/routing.dart';
+import 'package:nectar/utils/utils.dart';
 
 class LoginScreens extends StatefulWidget {
   const LoginScreens({super.key});
@@ -20,6 +24,16 @@ class _LoginScreensState extends State<LoginScreens> {
   String animatedType = "idle";
 
   bool isVisible = false;
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    passwordController.dispose();
+    emailController.dispose();
+    passwordfocusNode.dispose();
+    emailfocusNode.dispose();
+  }
 
   @override
   void initState() {
@@ -149,11 +163,7 @@ class _LoginScreensState extends State<LoginScreens> {
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: InkWell(
                   onTap: () {
-                    Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const BottomNavBar(),
-                        ));
+                    Get.toNamed(Approutes.BOTTOM_NAVBAR);
                   },
                   child: Container(
                     width: double.infinity,
