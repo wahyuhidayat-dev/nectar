@@ -2,7 +2,6 @@
 
 import 'package:get/route_manager.dart';
 import 'package:nectar/screens/cartscreen.dart';
-import 'package:nectar/screens/detailscreen.dart';
 import 'package:nectar/screens/explorescreen.dart';
 import 'package:nectar/screens/favoritescreen.dart';
 import 'package:nectar/screens/homescreen.dart';

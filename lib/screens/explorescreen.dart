@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
 import 'package:nectar/model/product.dart';
 import 'package:nectar/utils/const.dart';
 
@@ -11,14 +12,15 @@ class Explorescreen extends StatefulWidget {
 }
 
 class _ExplorescreenState extends State<Explorescreen> {
-  TextEditingController searchController = TextEditingController();
+  late final TextEditingController searchController;
   FocusNode searchfocusNode = FocusNode();
   List<Product> _filteredData = [];
-  bool _isLoading = false;
+  bool isLoading = false;
 
   @override
   void initState() {
     super.initState();
+    searchController = TextEditingController();
     _filteredData = productData;
     searchController.addListener(_performSearch);
   }
@@ -31,7 +33,7 @@ class _ExplorescreenState extends State<Explorescreen> {
 
   Future<void> _performSearch() async {
     setState(() {
-      _isLoading = true;
+      isLoading = true;
     });
     await Future.delayed(const Duration(milliseconds: 1000));
 
@@ -42,7 +44,7 @@ class _ExplorescreenState extends State<Explorescreen> {
               .toLowerCase()
               .contains(searchController.text.toLowerCase()))
           .toList();
-      _isLoading = false;
+      isLoading = false;
     });
   }
 
@@ -57,10 +59,11 @@ class _ExplorescreenState extends State<Explorescreen> {
           child: SizedBox(
             height: 45,
             child: TextFormField(
+              // autofocus: true,
               style: fontBold.copyWith(color: greyColor),
               focusNode: searchfocusNode,
               cursorColor: greenColor,
-              textInputAction: TextInputAction.next,
+              textInputAction: TextInputAction.done,
               decoration: InputDecoration(
                   hintText: 'search',
                   hintStyle: fontMedium.copyWith(color: greyColor),

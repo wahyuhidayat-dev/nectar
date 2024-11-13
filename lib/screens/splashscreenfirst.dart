@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:nectar/screens/splashscreensecond.dart';
 import 'package:nectar/utils/const.dart';
-import 'package:nectar/utils/routing.dart';
-import 'package:nectar/utils/utils.dart';
 
 class SplashScreenFirst extends StatefulWidget {
   const SplashScreenFirst({super.key});
