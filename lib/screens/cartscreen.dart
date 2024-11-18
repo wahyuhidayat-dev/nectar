@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
+import 'package:nectar/screens/successscreen.dart';
 import 'package:nectar/utils/const.dart';
 
 class Cartscreen extends StatefulWidget {
@@ -24,7 +25,6 @@ class _CartscreenState extends State<Cartscreen> {
       qtyContoller.add(TextEditingController());
       qtyContoller[i].text = "1";
       focusNode.add(FocusNode());
-      jmlAmt.value += cartData[i].price!;
     }
   }
 
@@ -48,6 +48,196 @@ class _CartscreenState extends State<Cartscreen> {
         padding: const EdgeInsets.fromLTRB(30, 0, 10, 0),
         child: InkWell(
           onTap: () {
+            jmlAmt.value = 0;
+            for (int i = 0; i < cartData.length; i++) {
+              jmlAmt.value +=
+                  cartData[i].price! * int.parse(qtyContoller[i].text);
+            }
+            //  print(jmlAmt);
+            showModalBottomSheet<void>(
+                context: context,
+                builder: (BuildContext context) {
+                  return SizedBox(
+                    height: MediaQuery.of(context).size.height * 0.7,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(20, 20, 20, 20),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                'Checkout',
+                                style: fontBold.copyWith(fontSize: 18),
+                              ),
+                              InkWell(
+                                onTap: () {
+                                  Navigator.pop(context);
+                                },
+                                child: const FaIcon(
+                                  FontAwesomeIcons.x,
+                                  size: 15,
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                        Divider(
+                          color: greyColor.withOpacity(0.2),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text("Delivery",
+                                  style: fontBold.copyWith(
+                                      fontSize: 14,
+                                      color: greyColor.withOpacity(0.5))),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  Text("Select Method",
+                                      style: fontBold.copyWith(fontSize: 14)),
+                                  const SizedBox(
+                                    width: 20,
+                                  ),
+                                  const FaIcon(FontAwesomeIcons.angleRight)
+                                ],
+                              )
+                            ],
+                          ),
+                        ),
+                        Divider(
+                          color: greyColor.withOpacity(0.2),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text("Payment",
+                                  style: fontBold.copyWith(
+                                      fontSize: 14,
+                                      color: greyColor.withOpacity(0.5))),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  Image.asset("assets/logo/card.png"),
+                                  const SizedBox(
+                                    width: 20,
+                                  ),
+                                  const FaIcon(FontAwesomeIcons.angleRight)
+                                ],
+                              )
+                            ],
+                          ),
+                        ),
+                        Divider(
+                          color: greyColor.withOpacity(0.2),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text("Promo Code",
+                                  style: fontBold.copyWith(
+                                      fontSize: 14,
+                                      color: greyColor.withOpacity(0.5))),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  Text("Pick discount",
+                                      style: fontBold.copyWith(fontSize: 14)),
+                                  const SizedBox(
+                                    width: 20,
+                                  ),
+                                  const FaIcon(FontAwesomeIcons.angleRight)
+                                ],
+                              )
+                            ],
+                          ),
+                        ),
+                        Divider(
+                          color: greyColor.withOpacity(0.2),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text("Total Cost",
+                                  style: fontBold.copyWith(
+                                      fontSize: 14,
+                                      color: greyColor.withOpacity(0.5))),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  Text(
+                                      NumberFormat.currency(
+                                              locale: 'en_US',
+                                              symbol: 'USD ',
+                                              decimalDigits: 2)
+                                          .format(jmlAmt.value),
+                                      style: fontBold.copyWith(fontSize: 14)),
+                                  const SizedBox(
+                                    width: 20,
+                                  ),
+                                  const FaIcon(FontAwesomeIcons.angleRight)
+                                ],
+                              )
+                            ],
+                          ),
+                        ),
+                        Divider(
+                          color: greyColor.withOpacity(0.2),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
+                          child: Text(
+                            "By placing an order you agree to our\nTerms And Conditions",
+                            style: fontMedium.copyWith(),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
+                          child: InkWell(
+                            onTap: () {
+                              Navigator.pushReplacement(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => const Successscreen(),
+                                  ));
+                            },
+                            child: Container(
+                              width: double.infinity,
+                              height: 50,
+                              decoration: const BoxDecoration(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(10)),
+                                color: greenColor,
+                              ),
+                              child: Center(
+                                child: Text(
+                                  'Place Order',
+                                  style: fontBold.copyWith(
+                                      color: whiteColor, fontSize: 18),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  );
+                });
             // Navigator.pushReplacement(
             //     context,
             //     MaterialPageRoute(

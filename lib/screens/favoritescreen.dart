@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';
+import 'package:nectar/utils/bottomnavbar.dart';
 import 'package:nectar/utils/const.dart';
 
 class FavoriteScreen extends StatefulWidget {
@@ -19,6 +20,7 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
         padding: const EdgeInsets.fromLTRB(30, 0, 10, 0),
         child: InkWell(
           onTap: () {
+            _dialogBuilder(context);
             // Navigator.pushReplacement(
             //     context,
             //     MaterialPageRoute(
@@ -144,4 +146,74 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
           )),
     );
   }
+}
+
+Future<void> _dialogBuilder(BuildContext context) {
+  return showDialog<void>(
+    context: context,
+    builder: (BuildContext context) {
+      return AlertDialog(
+        // title: const Text(''),
+        content: SizedBox(
+          height: MediaQuery.of(context).size.height * 0.6,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              Padding(
+                padding: const EdgeInsets.fromLTRB(10, 20, 10, 20),
+                child: Image.asset("assets/images/illustration_bag.png"),
+              ),
+              Text(
+                "Oops! Order Failed",
+                textAlign: TextAlign.center,
+                style: fontBold.copyWith(fontSize: 28),
+              ),
+              Text("Something went tembly wrong.",
+                  textAlign: TextAlign.center,
+                  style: fontMedium.copyWith(
+                    fontSize: 16,
+                    color: greyColor.withOpacity(0.5),
+                  )),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
+                child: InkWell(
+                  onTap: () {
+                    Navigator.pop(context);
+                  },
+                  child: Container(
+                    width: double.infinity,
+                    height: 50,
+                    decoration: const BoxDecoration(
+                      borderRadius: BorderRadius.all(Radius.circular(10)),
+                      color: greenColor,
+                    ),
+                    child: Center(
+                      child: Text(
+                        'Please Try Again',
+                        style:
+                            fontBold.copyWith(color: whiteColor, fontSize: 18),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              InkWell(
+                onTap: () {
+                  Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const Bottomnavbar(),
+                      ));
+                },
+                child: Text(
+                  'Back Home',
+                  style: fontBold.copyWith(fontSize: 18),
+                ),
+              ),
+            ],
+          ),
+        ),
+      );
+    },
+  );
 }
